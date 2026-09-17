@@ -1,0 +1,14 @@
+name: Build Bluetooth reset firmware
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  reset:
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      build_matrix_path: reset-build.yaml

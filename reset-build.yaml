@@ -1,0 +1,9 @@
+include:
+  - board: nice_nano/nrf52840/zmk
+    shield: sweep_left
+    artifact-name: sweep-reset-left
+    cmake-args: -DCONFIG_ZMK_SETTINGS_RESET_ON_START=y
+  - board: nice_nano/nrf52840/zmk
+    shield: sweep_right
+    artifact-name: sweep-reset-right
+    cmake-args: -DCONFIG_ZMK_SETTINGS_RESET_ON_START=y
