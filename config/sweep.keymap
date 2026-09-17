@@ -32,7 +32,7 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        nine_tilde: nine_tilde {
+        N9T: N9T {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp N9>, <&kp TILDE>;
@@ -172,30 +172,30 @@
             >;
         };
 
-        right_layer {
-            display-name = "Right Layer";
+        left_layer {
+            display-name = "Left Layer";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             &trans     &home_page_down &mmv MOVE_UP &end_page_up &left_bracket_angle         &right_bracket_angle &double_ampersand &double_pipe &arrow &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &left_paren_brace         &right_paren_brace &double_colon &kp SEMI &kp QUOT &kp BSPC
+            &trans     &kp LEFT &kp DOWN &kp RIGHT &left_paren_brace         &right_paren_brace &double_colon &kp SEMI &kp QUOT &kp BSPC
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &trans     &trans     &trans     &left_bracket_angle         &right_bracket_angle &trans &slash_backslash &minus_plus &kp UNDER
+            &trans     &trans     &trans     &trans     &trans         &trans &trans &slash_backslash &minus_plus &kp UNDER
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &kp ESC        &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
 
-        left_layer {
-            display-name = "Left Layer";
+        right_layer {
+            display-name = "Right Layer";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            &trans     &kp N1     &kp N2     &kp N3     &trans         &trans     &trans     &trans     &trans     &trans
+            &trans     &trans     &trans     &trans     &trans         &trans     &kp N1     &kp N2     &kp N3     &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &kp N4     &kp N5     &kp N6     &trans         &trans     &trans     &trans     &trans     &trans
+            &trans     &trans     &trans     &trans     &trans         &kp N0     &kp N4     &kp N5     &kp N6     &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &kp N7     &kp N8     &nine_tilde &trans         &trans     &trans     &trans     &trans     &trans
+            &trans     &trans     &trans     &trans     &trans         &trans     &kp N7     &kp N8     &nine_tilde &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
@@ -226,7 +226,7 @@
           &bootloader &trans     &trans     &trans    &bt BT_SEL 1    &trans     &trans     &trans     &trans     &bootloader
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             &trans     &trans     &trans     &bt BT_CLR &bt BT_SEL 2  &trans     &trans     &trans     &trans     &trans
-        //╰──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+        //╰──────────┴──────────┼──────────┼──────────┤              ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
