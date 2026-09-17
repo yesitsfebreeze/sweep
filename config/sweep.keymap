@@ -176,13 +176,13 @@
             display-name = "Left Layer";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            &trans     &hp        &kp UP     &ep        &lb            &rb        &aa        &pp        &arrow     &trans
+            &trans     &hp        &kp UP     &ep        &lb            &rb        &aa        &pp        &arrow     &none
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &kp LEFT   &kp DOWN   &kp RIGHT  &lp            &rp        &cc        &kp SEMI   &kp QUOT   &kp PIPE
+            &none      &kp LEFT   &kp DOWN   &kp RIGHT  &lp            &rp        &cc        &kp SEMI   &kp QUOT   &kp PIPE
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &trans     &trans     &trans     &trans         &trans     &trans     &sb        &mp        &kp UNDER
+            &none      &none      &none      &none      &trans         &trans     &none      &sb        &mp        &kp UNDER
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &kp ESC        &trans     &trans
+                                             &none      &kp ESC        &none      &none
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -191,13 +191,13 @@
             display-name = "Right Layer";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            &trans     &trans     &trans     &trans     &trans         &trans     &kp N1     &kp N2     &kp N3     &trans
+            &trans     &none      &none      &none      &none          &none      &kp N1     &kp N2     &kp N3     &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &trans     &trans     &trans     &trans         &kp N0     &kp N4     &kp N5     &kp N6     &trans
+            &none      &none      &none      &none      &none          &kp N0     &kp N4     &kp N5     &kp N6     &none
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &trans     &trans     &trans     &trans         &trans     &kp N7     &kp N8     &nt &trans
+            &none      &none      &none      &none      &trans         &trans     &kp N7     &kp N8     &nt       &none
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans         &trans     &trans
+                                             &none      &none          &none      &none
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -206,13 +206,13 @@
             display-name = "Tri Layer";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            &trans     &mmv MOVE_UP &trans     &trans     &mkp LCLK         &kp F1     &kp F2     &kp F3     &trans     &trans
+            &trans     &mkp LCLK &mmv MOVE_UP &mkp RCLK      &none      &none       &kp F1     &kp F2     &kp F3   &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &trans     &mkp RCLK         &kp F4     &kp F5     &kp F6     &trans     &trans
+            &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &none      &none       &kp F4     &kp F5     &kp F6     &none      &none
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &trans     &trans     &trans     &trans         &kp F7     &kp F8     &kp F9     &trans     &trans
+            &none      &none      &mkp MCLK    &none      &trans        &trans   &kp F7     &kp F8     &kp F9     &none  
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans         &trans     &trans
+                                             &none      &none          &none      &none
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -221,13 +221,13 @@
             display-name = "System";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-           &sys_reset &trans     &trans     &trans    &bt BT_SEL 0    &trans     &trans     &trans     &trans     &sys_reset
+           &sys_reset &none      &none      &none      &bt BT_SEL 0   &none      &none      &none      &none      &sys_reset
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-          &bootloader &trans     &trans     &trans    &bt BT_SEL 1    &trans     &trans     &trans     &trans     &bootloader
+          &bootloader &none      &none      &none      &bt BT_SEL 1   &none      &none      &none      &none      &bootloader
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &trans     &trans     &bt BT_CLR &bt BT_SEL 2  &trans     &trans     &trans     &trans     &trans
+            &none      &none      &none      &bt BT_CLR  &bt BT_SEL 2 &trans     &none      &none      &none      &none
         //╰──────────┴──────────┼──────────┼──────────┤              ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans         &trans     &trans
+                                             &none      &none          &none      &none
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -236,13 +236,13 @@
             display-name = "Alternate OS";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans
+            &trans     &none      &none      &none      &none          &none      &none      &none      &none      &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &ht LALT R &ht LGUI S &ht LCTRL T &trans         &trans     &ht RCTRL N &ht RGUI E &ht RALT I &trans
+            &none      &ht LALT R &ht LGUI S &ht LCTRL T &none          &none      &ht RCTRL N &ht RGUI E &ht RALT I &none
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &td_z      &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &td_q
+            &td_z      &none      &none      &none      &trans         &trans     &none      &none      &none      &td_q
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans         &trans     &trans
+                                             &none      &none          &none      &none
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
