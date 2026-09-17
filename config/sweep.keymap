@@ -176,7 +176,7 @@
             display-name = "Left Layer";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            &trans     &home_page_down &mmv MOVE_UP &end_page_up &left_bracket_angle         &right_bracket_angle &double_ampersand &double_pipe &arrow &trans
+            &trans     &home_page_down &kp UP &end_page_up &left_bracket_angle         &right_bracket_angle &double_ampersand &double_pipe &arrow &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             &trans     &kp LEFT &kp DOWN &kp RIGHT &left_paren_brace         &right_paren_brace &double_colon &kp SEMI &kp QUOT &kp BSPC
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
