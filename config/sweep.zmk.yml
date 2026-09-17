@@ -1,6 +1,6 @@
 file_format: "1"
-id: cradio
-name: Cradio/Sweep
+id: sweep
+name: Sweep
 type: shield
 url: https://github.com/davidphilipbarr/Sweep
 requires: [pro_micro]
@@ -9,5 +9,5 @@ features:
   - keys
   - studio
 siblings:
-  - cradio_left
-  - cradio_right
+  - sweep_left
+  - sweep_right
