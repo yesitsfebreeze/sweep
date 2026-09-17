@@ -8,19 +8,33 @@ jobs:
   build:
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
 
+  reset:
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      build_matrix_path: reset-build.yaml
+      archive_name: reset-firmware
+
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    needs: build
+    needs: [build, reset]
     runs-on: ubuntu-latest
     steps:
-      - name: Download firmware artifact
+      - name: Download final firmware
         uses: actions/download-artifact@v4
         with:
           name: firmware
-          path: release
+          path: final
+
+      - name: Download reset firmware
+        uses: actions/download-artifact@v4
+        with:
+          name: reset-firmware
+          path: reset
 
       - name: Package firmware
-        run: zip -j sweep-firmware.zip release/*.uf2
+        run: |
+          zip -j sweep-firmware.zip final/*.uf2
+          zip -j sweep-reset-firmware.zip reset/*.uf2
 
       - name: Publish latest release
         env:
@@ -28,9 +42,11 @@ jobs:
         run: |
           if gh release view latest --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             gh release upload latest sweep-firmware.zip --repo "$GITHUB_REPOSITORY" --clobber
+            gh release upload latest sweep-reset-firmware.zip --repo "$GITHUB_REPOSITORY" --clobber
             gh release edit latest --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA"
           else
             gh release create latest sweep-firmware.zip \
+              sweep-reset-firmware.zip \
               --repo "$GITHUB_REPOSITORY" \
               --target "$GITHUB_SHA" \
               --title "Latest firmware" \
