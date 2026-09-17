@@ -117,6 +117,32 @@
         };
     };
 
+    macros {
+        double_ampersand: double_ampersand {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp AMPS &kp AMPS>;
+        };
+
+        double_pipe: double_pipe {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp PIPE &kp PIPE>;
+        };
+
+        arrow: arrow {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS &kp GT>;
+        };
+
+        double_colon: double_colon {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp COLON &kp COLON>;
+        };
+    };
+
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_layer {
@@ -150,11 +176,11 @@
             display-name = "Right Layer";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            &trans     &home_page_down &mmv MOVE_UP &end_page_up &trans         &trans     &trans     &trans     &trans     &trans
+            &trans     &home_page_down &mmv MOVE_UP &end_page_up &left_bracket_angle         &right_bracket_angle &double_ampersand &double_pipe &arrow &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &mmv MOVE_UP         &left_bracket_angle &right_bracket_angle &comma_exclamation &dot_question &slash_backslash
+            &trans     &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &left_paren_brace         &right_paren_brace &double_colon &kp SEMI &kp QUOT &kp BSPC
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &trans     &trans     &trans     &trans         &left_paren_brace &right_paren_brace &minus_plus &kp QUOT &kp BSPC
+            &trans     &trans     &trans     &trans     &left_bracket_angle         &right_bracket_angle &trans &slash_backslash &minus_plus &kp UNDER
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &kp ESC        &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
@@ -180,11 +206,11 @@
             display-name = "Tri Layer";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-                        &trans     &kp F1     &kp F2     &kp F3     &trans         &trans     &trans     &trans     &trans     &trans
+            &trans     &mmv MOVE_UP &trans     &trans     &mkp LCLK         &kp F1     &kp F2     &kp F3     &trans     &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-                        &trans     &kp F4     &kp F5     &kp F6     &trans         &trans     &trans     &trans     &trans     &trans
+            &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &trans     &mkp RCLK         &kp F4     &kp F5     &kp F6     &trans     &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-                        &trans     &kp F7     &kp F8     &kp F9     &trans         &trans     &trans     &trans     &trans     &trans
+            &trans     &trans     &trans     &trans     &trans         &kp F7     &kp F8     &kp F9     &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
