@@ -26,11 +26,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          if gh release view latest >/dev/null 2>&1; then
-            gh release upload latest sweep-firmware.zip --clobber
-            gh release edit latest --target "$GITHUB_SHA"
+          if gh release view latest --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload latest sweep-firmware.zip --repo "$GITHUB_REPOSITORY" --clobber
+            gh release edit latest --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA"
           else
             gh release create latest sweep-firmware.zip \
+              --repo "$GITHUB_REPOSITORY" \
               --target "$GITHUB_SHA" \
               --title "Latest firmware" \
               --notes "Automatically generated from the latest successful build on main."
