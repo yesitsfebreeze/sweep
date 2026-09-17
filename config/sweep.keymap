@@ -31,7 +31,7 @@
 
         LBSPC: backspace_layer {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <1>;
+            #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
@@ -60,7 +60,7 @@
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             &kp Z      &kp X      &kp C      &kp V      &kp COMMA      &kp DOT    &kp Y      &kp K      &kp M      &kp Q
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &lt 2 TAB   &lt 1 SPACE    &LBSPC 2   &lt 1 BSPC
+                                            &lt 2 TAB   &lt 1 SPACE    &LBSPC 2 0 &lt 1 BSPC
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
