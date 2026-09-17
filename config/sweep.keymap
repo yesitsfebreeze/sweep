@@ -18,84 +18,84 @@
             bindings = <&kp>, <&kp>;
         };
 
-        home_page_down: home_page_down {
+        hp: hp {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp HOME>, <&kp PG_DN>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        end_page_up: end_page_up {
+        ep: ep {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp END>, <&kp PG_UP>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        N9T: N9T {
+        nt: nt {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp N9>, <&kp TILDE>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        left_bracket_angle: left_bracket_angle {
+        lb: lb {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp LBKT>, <&kp LT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        right_bracket_angle: right_bracket_angle {
+        rb: rb {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp RBKT>, <&kp GT>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        left_paren_brace: left_paren_brace {
+        lp: lp {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp LPAR>, <&kp LCBR>;
+            bindings = <&kp LPAR>, <&kp LBRC>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        right_paren_brace: right_paren_brace {
+        rp: rp {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp RPAR>, <&kp RCBR>;
+            bindings = <&kp RPAR>, <&kp RBRC>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        comma_exclamation: comma_exclamation {
+        ce: ce {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp COMMA>, <&kp EXCL>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        dot_question: dot_question {
+        dq: dq {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp DOT>, <&kp QUES>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        slash_backslash: slash_backslash {
+        sb: sb {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp FSLH>, <&kp BSLH>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        minus_plus: minus_plus {
+        mp: mp {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp MINUS>, <&kp PLUS>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
-        escape_backtick: escape_backtick {
+        eb: eb {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp ESC>, <&kp GRAVE>;
@@ -118,13 +118,13 @@
     };
 
     macros {
-        double_ampersand: double_ampersand {
+        aa: aa {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp AMPS &kp AMPS>;
         };
 
-        double_pipe: double_pipe {
+        pp: pp {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp PIPE &kp PIPE>;
@@ -136,7 +136,7 @@
             bindings = <&kp MINUS &kp GT>;
         };
 
-        double_colon: double_colon {
+        cc: cc {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&kp COLON &kp COLON>;
@@ -161,7 +161,7 @@
             display-name = "Default Layer";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            &escape_backtick &kp L &kp W      &kp D      &kp B          &kp J      &kp U      &kp F      &kp O      &kp ENTER
+            &eb &kp L &kp W      &kp D      &kp B          &kp J      &kp U      &kp F      &kp O      &kp ENTER
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             &kp A      &ht LALT R &ht LCTRL S &ht LGUI T &kp G          &kp H      &ht RGUI N &ht RCTRL E &ht RALT I &kp SEMI
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
@@ -176,11 +176,11 @@
             display-name = "Left Layer";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            &trans     &home_page_down &kp UP &end_page_up &left_bracket_angle         &right_bracket_angle &double_ampersand &double_pipe &arrow &trans
+            &trans     &hp &kp UP &ep &lb         &rb &aa &pp &arrow &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &kp LEFT &kp DOWN &kp RIGHT &left_paren_brace         &right_paren_brace &double_colon &kp SEMI &kp QUOT &kp PIPE
+            &trans     &kp LEFT &kp DOWN &kp RIGHT &lp         &rp &cc &kp SEMI &kp QUOT &kp PIPE
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &trans     &trans     &trans     &trans         &trans &trans &slash_backslash &minus_plus &kp UNDER
+            &trans     &trans     &trans     &trans     &trans         &trans &trans &sb &mp &kp UNDER
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &kp ESC        &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
@@ -195,7 +195,7 @@
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             &trans     &trans     &trans     &trans     &trans         &kp N0     &kp N4     &kp N5     &kp N6     &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &trans     &trans     &trans     &trans         &trans     &kp N7     &kp N8     &nine_tilde &trans
+            &trans     &trans     &trans     &trans     &trans         &trans     &kp N7     &kp N8     &nt &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
