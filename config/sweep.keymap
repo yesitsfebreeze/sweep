@@ -38,6 +38,20 @@
             require-prior-idle-ms = <100>;
             bindings = <&mo>, <&bspc_del>;
         };
+
+        td_z: z_os_switch {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&ht LCTRL Z>, <&tog 4>;
+        };
+
+        td_q: q_os_switch {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <250>;
+            bindings = <&ht RCTRL Q>, <&tog 4>;
+        };
     };
 
     conditional_layers {
@@ -58,7 +72,7 @@
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             HRML(A,        R,         S,         T)     &kp G          &kp H      HRMR(N,        E,         I,        P)
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &kp Z      &kp X      &kp C      &kp V      &kp COMMA      &kp DOT    &kp Y      &kp K      &kp M      &kp Q
+            &td_z      &kp X      &kp C      &kp V      &kp COMMA      &kp DOT    &kp Y      &kp K      &kp M      &td_q
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                             &lt 2 TAB   &lt 1 SPACE    &LBSPC 2 0 &lt 1 BSPC
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
@@ -104,6 +118,21 @@
           &bootloader  &trans     &trans     &trans    &bt BT_SEL 1    &trans     &trans     &trans     &trans    &bootloader
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             &trans     &trans     &trans    &bt BT_CLR &bt BT_SEL 2    &trans     &trans     &trans     &trans     &trans
+        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                             &trans     &trans         &trans     &trans
+        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            >;
+        };
+
+        os_overlay_layer {
+            display-name = "Alternate OS";
+            bindings = <
+        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+            &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+            &ht LSHFT A &ht LALT R &ht LGUI S &ht LCTRL T &trans         &trans     &ht RCTRL N &ht RGUI E &ht RALT I &ht RSHFT P
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+            &td_z      &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &td_q
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
