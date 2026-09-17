@@ -39,6 +39,62 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        left_bracket_angle: left_bracket_angle {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LBKT>, <&kp LT>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        right_bracket_angle: right_bracket_angle {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RBKT>, <&kp GT>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        left_paren_brace: left_paren_brace {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp LPAR>, <&kp LCBR>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        right_paren_brace: right_paren_brace {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp RPAR>, <&kp RCBR>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        comma_exclamation: comma_exclamation {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp COMMA>, <&kp EXCL>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        dot_question: dot_question {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp DOT>, <&kp QUES>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        slash_backslash: slash_backslash {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp FSLH>, <&kp BSLH>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
+        minus_plus: minus_plus {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS>, <&kp PLUS>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
         escape_backtick: escape_backtick {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -96,9 +152,9 @@
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
             &trans     &home_page_down &mmv MOVE_UP &end_page_up &trans         &trans     &trans     &trans     &trans     &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &mmv MOVE_UP         &trans     &trans     &trans     &trans     &trans
+            &trans     &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &mmv MOVE_UP         &left_bracket_angle &right_bracket_angle &comma_exclamation &dot_question &slash_backslash
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans
+            &trans     &trans     &trans     &trans     &trans         &left_paren_brace &right_paren_brace &minus_plus &kp QUOT &kp BSPC
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &kp ESC        &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
@@ -124,11 +180,11 @@
             display-name = "Tri Layer";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-                        &trans     &trans     &mmv MOVE_UP &trans     &trans         &trans     &trans     &trans     &trans     &trans
+                        &trans     &kp F1     &kp F2     &kp F3     &trans         &trans     &trans     &trans     &trans     &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-                        &mmv MOVE_DOWN &mmv MOVE_LEFT &mmv MOVE_RIGHT &trans &trans      &trans     &trans     &trans     &trans     &trans
+                        &trans     &kp F4     &kp F5     &kp F6     &trans         &trans     &trans     &trans     &trans     &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-                        &trans     &trans     &trans     &trans     &trans         &trans     &trans     &trans     &trans     &trans
+                        &trans     &kp F7     &kp F8     &kp F9     &trans         &trans     &trans     &trans     &trans     &trans
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
