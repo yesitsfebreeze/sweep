@@ -176,11 +176,11 @@
             display-name = "Left Layer";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            &trans     &hp &kp UP &ep &lb         &rb &aa &pp &arrow &trans
+            &trans     &hp        &kp UP     &ep        &lb            &rb        &aa        &pp        &arrow     &trans
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &kp LEFT &kp DOWN &kp RIGHT &lp         &rp &cc &kp SEMI &kp QUOT &kp PIPE
+            &trans     &kp LEFT   &kp DOWN   &kp RIGHT  &lp            &rp        &cc        &kp SEMI   &kp QUOT   &kp PIPE
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-            &trans     &trans     &trans     &trans     &trans         &trans &trans &sb &mp &kp UNDER
+            &trans     &trans     &trans     &trans     &trans         &trans     &trans     &sb        &mp        &kp UNDER
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &kp ESC        &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
