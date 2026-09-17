@@ -39,6 +39,13 @@
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
+        escape_backtick: escape_backtick {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp ESC>, <&kp GRAVE>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
+
         td_z: z_os_switch {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
@@ -72,7 +79,7 @@
             display-name = "Default Layer";
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-            &kp ESC    &kp L      &kp W      &kp D      &kp B          &kp J      &kp U      &kp F      &kp O      &kp ENTER
+            &escape_backtick &kp L &kp W      &kp D      &kp B          &kp J      &kp U      &kp F      &kp O      &kp ENTER
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
             &kp A      &ht LALT R &ht LCTRL S &ht LGUI T &kp G          &kp H      &ht RGUI N &ht RCTRL E &ht RALT I &kp SEMI
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
