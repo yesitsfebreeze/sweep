@@ -77,7 +77,7 @@
         dq: dq {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp DOT>, <&kp QUES>;
+            bindings = <&kp DOT>, <&kp QMARK>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
 
