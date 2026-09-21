@@ -1,6 +1,69 @@
 // Copyright (c) 2022 The ZMK Contributors
 // SPDX-License-Identifier: MIT
 
+/* ============================ LAYOUT TEMPLATE ============================
+   Edit this block, then ask to "translate": the ZMK keymap below is
+   regenerated from it. Everything after this block is generated.
+
+   Thumbs, left to right:   TL1   TL0   │   TR0   TR1
+
+   Cell syntax
+     a          plain key. Names: letters, digits, f1..f12, esc tab ent bspc
+                del spc home end pgup pgdn left down up right pipe
+                and literal ; , . / ' - = [ ] \ ` ~ _ + < > ( ) { } & : ! ?
+     ctl/r      hold = modifier (ctl gui alt sft), tap = key
+     L1/spc     hold = layer 1, tap = key
+     ctl/z*     same, plus double tap toggles L5 (alt OS)
+     [|<        shift-morph: [ normally, < while shift held
+     "->"       macro, types the string
+     mup mdn mlt mrt   mouse move       mlc mrc mmc   mouse click
+     bt0 bt1 bt2 btclr boot reset       -  nothing    .  transparent
+
+   Layers
+     L0  base
+     L1  hold TL0
+     L2  hold TR0
+     L3  L1 + L2 held together
+     L4  global    TODO: no trigger defined, unreachable
+     L5  alt OS    toggle: double tap z or q
+
+   L0 base
+     esc|`   l       w       d       b       │  j        u       f       o       ent
+     a       ctl/r   gui/s   alt/t   g       │  h        alt/n   gui/e   ctl/i   p
+     ctl/z*  x       c       v       ,       │  .        y       k       m       ctl/q*
+                             sft/tab L1/spc  │  L2/bspc  sft/del
+
+   L1 hold TL0
+     .       home|pgdn up    end|pgup [|<    │  ]|>      "&&"    "||"    "->"    -
+     -       left    down    right   (|{     │  )|}      "::"    ;       '       pipe
+     -       -       -       -       .       │  .        -       /|\     -|+     _
+                             .       .       │  .        .
+
+   L2 hold TR0
+     .       f1      f2      f3      -       │  -        1       2       3       .
+     -       f4      f5      f6      -       │  0        4       5       6       -
+     -       f7      f8      -       .       │  .        7       8       9|~     -
+                             .       .       │  .        .
+
+   L3 L1 + L2
+     .       mlc     mup     mrc     -       │  -        f1      f2      f3      .
+     -       mlt     mdn     mrt     -       │  -        f4      f5      f6      -
+     -       -       mmc     -       .       │  .        f7      f8      f9      -
+                             .       .       │  .        .
+
+   L4 global
+     reset   -       -       -       -       │  -        -       -       -       boot
+     -       bt0     bt1     bt2     -       │  -        -       -       -       -
+     -       -       btclr   -       -       │  .        -       -       -       -
+                             .       .       │  .        .
+
+   L5 alt OS
+     .       .       .       .       .       │  .        .       .       .       .
+     .       gui/r   ctl/s   .       .       │  .        .       ctl/e   gui/i   .
+     ctl/z*  .       .       .       .       │  .        .       -       -       ctl/q*
+                             .       .       │  .        .
+   ========================================================================= */
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -106,14 +169,14 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
-            bindings = <&ht LCTRL Z>, <&tog 4>;
+            bindings = <&ht LCTRL Z>, <&tog 5>;
         };
 
         td_q: q_os_switch {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <250>;
-            bindings = <&ht RCTRL Q>, <&tog 4>;
+            bindings = <&ht RCTRL Q>, <&tog 5>;
         };
     };
 
@@ -145,35 +208,31 @@
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
-        tri_layer {
+        thumb_combo {
             if-layers = <1 2>;
             then-layer = <3>;
-        };
-        system_layer {
-            if-layers = <4 5>;
-            then-layer = <6>;
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
-        default_layer {
-            display-name = "Default Layer";
+        home_layer {
+            display-name = "Home Layer";
             bindings = <
 //╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
   &eb             &kp L           &kp W           &kp D           &kp B               &kp J           &kp U           &kp F           &kp O           &kp ENTER
 //├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &kp A           &ht LCTRL R     &ht LGUI S      &ht LALT T      &kp G               &kp H           &ht RALT N      &ht RGUI E      &ht RCTRL I     &kp SEMI
+  &kp A           &ht LCTRL R     &ht LGUI S      &ht LALT T      &kp G               &kp H           &ht RALT N      &ht RGUI E      &ht RCTRL I     &kp P
 //├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
   &td_z           &kp X           &kp C           &kp V           &kp COMMA           &kp DOT         &kp Y           &kp K           &kp M           &td_q
 //╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                                  &ht TAB LSFT    &lt 1 SPACE         &lt 2 BSPC      &ht DEL RSFT
+                                                  &ht LSFT TAB    &lt 1 SPACE         &lt 2 BSPC      &ht RSFT DEL
 //                                                ╰───────────────┴───────────────╯   ╰───────────────┴───────────────╯
             >;
         };
 
-        left_layer {
-            display-name = "Left Layer";
+        left_thumb_layer {
+            display-name = "Left Thumb Layer";
             bindings = <
 //╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
   &trans          &hp             &kp UP          &ep             &lb                 &rb             &aa             &pp             &arrow          &none
@@ -187,23 +246,23 @@
             >;
         };
 
-        right_layer {
-            display-name = "Right Layer";
+        right_thumb_layer {
+            display-name = "Right Thumb Layer";
             bindings = <
 //╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-  &trans          &none           &none           &none           &none               &none           &kp N1          &kp N2          &kp N3          &trans
+  &trans          &kp F1           &kp F2         &kp F3           &none               &none           &kp N1          &kp N2          &kp N3          &trans
 //├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &none           &none           &none           &none           &none               &kp N0          &kp N4          &kp N5          &kp N6          &none
+  &none           &kp F4           &kp F5         &kp F6           &none               &kp N0          &kp N4          &kp N5          &kp N6          &none
 //├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &none           &none           &none           &none           &trans              &trans          &kp N7          &kp N8          &nt             &none
+  &none           &kp F7           &kp F8         &none           &trans              &trans          &kp N7          &kp N8          &nt             &none
 //╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
                                                   &trans          &trans              &trans          &trans
 //                                                ╰───────────────┴───────────────╯   ╰───────────────┴───────────────╯
             >;
         };
 
-        tri_layer {
-            display-name = "Tri Layer";
+        thumb_combo_layer {
+            display-name = "Thumb Combo Layer";
             bindings = <
 //╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
   &trans          &mkp LCLK       &mmv MOVE_UP    &mkp RCLK       &none               &none           &kp F1          &kp F2          &kp F3          &trans
@@ -217,15 +276,15 @@
             >;
         };
 
-        system_layer {
-            display-name = "System";
+        global_layer {
+            display-name = "Global Layer";
             bindings = <
 //╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-  &sys_reset      &none           &none           &none           &bt BT_SEL 0        &none           &none           &none           &none           &bootloader
+  &sys_reset      &none           &none           &none           &none               &none           &none           &none           &none           &bootloader
 //├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &none           &none           &none           &none           &bt BT_SEL 1        &none           &none           &none           &none           &none
+  &none           &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &none               &none           &none           &none           &none           &none
 //├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &none           &none           &none           &bt BT_CLR      &bt BT_SEL 2        &trans          &none           &none           &none           &none
+  &none           &none           &bt BT_CLR      &none           &none               &trans          &none           &none           &none           &none
 //╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
                                                   &trans          &trans              &trans          &trans
 //                                                ╰───────────────┴───────────────╯   ╰───────────────┴───────────────╯
@@ -236,11 +295,11 @@
             display-name = "Alternate OS";
             bindings = <
 //╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-  &trans          &none           &none           &none           &none               &none           &none           &none           &none           &trans
+  &trans          &trans          &trans          &trans          &trans              &trans          &trans          &trans          &trans          &trans
 //├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &none           &ht LALT R      &ht LGUI S      &ht LCTRL T     &none               &none           &ht RCTRL N     &ht RGUI E      &ht RALT I      &none
+  &trans          &ht LGUI R      &ht LCTRL S     &trans          &trans              &trans          &trans          &ht RCTRL E     &ht RGUI I      &trans
 //├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &td_z           &none           &none           &none           &trans              &trans          &none           &none           &none           &td_q
+  &td_z           &trans          &trans          &trans          &trans              &trans          &trans           &none          &none           &td_q
 //╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
                                                   &trans          &trans              &trans          &trans
 //                                                ╰───────────────┴───────────────╯   ╰───────────────┴───────────────╯
