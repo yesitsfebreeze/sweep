@@ -5,7 +5,18 @@
    Edit this block, then ask to "translate": the ZMK keymap below is
    regenerated from it. Everything after this block is generated.
 
-   Thumbs, left to right:   TL1   TL0   │   TR0   TR1
+   How layers work
+     Thumbs, left to right:   TL1   TL0   │   TR0   TR1
+     Each thumb held alone gives one layer. Any two thumbs held together
+     give a combo layer. Shift lives on the pinky home keys (a, p) and is
+     transparent on every layer, so shift-morphs (a|b) work everywhere.
+
+     L0  base
+     L1  hold TL0            L5  TL0 + TR0
+     L2  hold TR0            L6  TL1 + TR1   global (bluetooth, boot)
+     L3  hold TL1            L7  TL1 + TR0   free
+     L4  hold TR1   free     L8  TL0 + TR1   free
+     L9  alt OS, toggle by double tap on z or q
 
    Cell syntax
      a          plain key. Names: letters, digits, f1..f12, esc tab ent bspc
@@ -13,54 +24,72 @@
                 and literal ; , . / ' - = [ ] \ ` ~ _ + < > ( ) { } & : ! ?
      ctl/r      hold = modifier (ctl gui alt sft), tap = key
      L1/spc     hold = layer 1, tap = key
-     ctl/z*     same, plus double tap toggles L5 (alt OS)
+     ctl/z*     same, plus double tap toggles L9 (alt OS)
      [|<        shift-morph: [ normally, < while shift held
      "->"       macro, types the string
-     mup mdn mlt mrt   mouse move       mlc mrc mmc   mouse click
+     mup mdn mlt mrt    mouse move      msu msd msl msr   mouse scroll
+     mlc mrc mmc        mouse click
+     vold volu mute play prev next brid briu   media
      bt0 bt1 bt2 btclr boot reset       -  nothing    .  transparent
-
-   Layers
-     L0  base
-     L1  hold TL0
-     L2  hold TR0
-     L3  L1 + L2 held together
-     L4  global    TODO: no trigger defined, unreachable
-     L5  alt OS    toggle: double tap z or q
 
    L0 base
      esc|`   l       w       d       b       │  j        u       f       o       ent
-     a       ctl/r   gui/s   alt/t   g       │  h        alt/n   gui/e   ctl/i   p
+     sft/a   ctl/r   gui/s   alt/t   g       │  h        alt/n   gui/e   ctl/i   sft/p
      ctl/z*  x       c       v       ,       │  .        y       k       m       ctl/q*
-                             sft/tab L1/spc  │  L2/bspc  sft/del
+                             L3/tab  L1/spc  │  L2/bspc  L4/del
 
-   L1 hold TL0
+   L1 hold TL0  (navigation, brackets, symbols)
      .       home|pgdn up    end|pgup [|<    │  ]|>      "&&"    "||"    "->"    -
-     -       left    down    right   (|{     │  )|}      "::"    ;       '       pipe
-     -       -       -       -       .       │  .        -       /|\     -|+     _
+     .       left    down    right   (|{     │  )|}      "::"    ;       '       .
+     -       -       -       -       .       │  .        pipe    /|\     -|+     _
                              .       .       │  .        .
 
-   L2 hold TR0
-     .       f1      f2      f3      -       │  -        1       2       3       .
-     -       f4      f5      f6      -       │  0        4       5       6       -
-     -       f7      f8      -       .       │  .        7       8       9|~     -
+   L2 hold TR0  (numbers, function keys)
+     .       f1      f2      f3      f10     │  -        1       2       3       .
+     .       f4      f5      f6      f11     │  0        4       5       6       .
+     -       f7      f8      f9      f12     │  .        7       8       9|~     -
                              .       .       │  .        .
 
-   L3 L1 + L2
-     .       mlc     mup     mrc     -       │  -        f1      f2      f3      .
-     -       mlt     mdn     mrt     -       │  -        f4      f5      f6      -
-     -       -       mmc     -       .       │  .        f7      f8      f9      -
+   L3 hold TL1  (media)
+     .       -       -       -       -       │  -        vold    volu    mute    -
+     .       -       -       -       -       │  -        prev    play    next    .
+     -       -       -       -       -       │  -        brid    briu    -       -
                              .       .       │  .        .
 
-   L4 global
+   L4 hold TR1  (free)
+     .       -       -       -       -       │  -        -       -       -       -
+     .       -       -       -       -       │  -        -       -       -       .
+     -       -       -       -       -       │  -        -       -       -       -
+                             .       .       │  .        .
+
+   L5 TL0 + TR0  (mouse)
+     .       mlc     mup     mrc     -       │  -        -       msu     -       -
+     .       mlt     mdn     mrt     -       │  -        msl     msd     msr     .
+     -       -       mmc     -       .       │  .        -       -       -       -
+                             .       .       │  .        .
+
+   L6 TL1 + TR1  (global)
      reset   -       -       -       -       │  -        -       -       -       boot
-     -       bt0     bt1     bt2     -       │  -        -       -       -       -
-     -       -       btclr   -       -       │  .        -       -       -       -
+     .       bt0     bt1     bt2     -       │  -        -       -       -       .
+     -       -       btclr   -       -       │  -        -       -       -       -
                              .       .       │  .        .
 
-   L5 alt OS
+   L7 TL1 + TR0  (free)
+     .       -       -       -       -       │  -        -       -       -       -
+     .       -       -       -       -       │  -        -       -       -       .
+     -       -       -       -       -       │  -        -       -       -       -
+                             .       .       │  .        .
+
+   L8 TL0 + TR1  (free)
+     .       -       -       -       -       │  -        -       -       -       -
+     .       -       -       -       -       │  -        -       -       -       .
+     -       -       -       -       -       │  -        -       -       -       -
+                             .       .       │  .        .
+
+   L9 alt OS  (swaps gui and ctl on the home row)
      .       .       .       .       .       │  .        .       .       .       .
      .       gui/r   ctl/s   .       .       │  .        .       ctl/e   gui/i   .
-     ctl/z*  .       .       .       .       │  .        .       -       -       ctl/q*
+     .       .       .       .       .       │  .        .       .       .       .
                              .       .       │  .        .
    ========================================================================= */
 
@@ -81,228 +110,138 @@
             bindings = <&kp>, <&kp>;
         };
 
-        hp: hp {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp HOME>, <&kp PG_DN>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
+        // shift-morphs: a|b
+        eb: eb { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; mods = <(MOD_LSFT|MOD_RSFT)>; bindings = <&kp ESC>,   <&kp GRAVE>; };
+        hp: hp { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; mods = <(MOD_LSFT|MOD_RSFT)>; bindings = <&kp HOME>,  <&kp PG_DN>; };
+        ep: ep { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; mods = <(MOD_LSFT|MOD_RSFT)>; bindings = <&kp END>,   <&kp PG_UP>; };
+        lb: lb { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; mods = <(MOD_LSFT|MOD_RSFT)>; bindings = <&kp LBKT>,  <&kp LT>; };
+        rb: rb { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; mods = <(MOD_LSFT|MOD_RSFT)>; bindings = <&kp RBKT>,  <&kp GT>; };
+        lp: lp { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; mods = <(MOD_LSFT|MOD_RSFT)>; bindings = <&kp LPAR>,  <&kp LBRC>; };
+        rp: rp { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; mods = <(MOD_LSFT|MOD_RSFT)>; bindings = <&kp RPAR>,  <&kp RBRC>; };
+        sb: sb { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; mods = <(MOD_LSFT|MOD_RSFT)>; bindings = <&kp FSLH>,  <&kp BSLH>; };
+        mp: mp { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; mods = <(MOD_LSFT|MOD_RSFT)>; bindings = <&kp MINUS>, <&kp PLUS>; };
+        nt: nt { compatible = "zmk,behavior-mod-morph"; #binding-cells = <0>; mods = <(MOD_LSFT|MOD_RSFT)>; bindings = <&kp N9>,    <&kp TILDE>; };
 
-        ep: ep {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp END>, <&kp PG_UP>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        nt: nt {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp N9>, <&kp TILDE>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        lb: lb {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp LBKT>, <&kp LT>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        rb: rb {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp RBKT>, <&kp GT>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        lp: lp {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp LPAR>, <&kp LBRC>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        rp: rp {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp RPAR>, <&kp RBRC>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        ce: ce {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp COMMA>, <&kp EXCL>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        dq: dq {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp DOT>, <&kp QMARK>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        sb: sb {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp FSLH>, <&kp BSLH>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        mp: mp {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp MINUS>, <&kp PLUS>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        eb: eb {
-            compatible = "zmk,behavior-mod-morph";
-            #binding-cells = <0>;
-            bindings = <&kp ESC>, <&kp GRAVE>;
-            mods = <(MOD_LSFT|MOD_RSFT)>;
-        };
-
-        td_z: z_os_switch {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <250>;
-            bindings = <&ht LCTRL Z>, <&tog 5>;
-        };
-
-        td_q: q_os_switch {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <250>;
-            bindings = <&ht RCTRL Q>, <&tog 5>;
-        };
+        // ctl/z* and ctl/q*: tap z/q, hold ctrl, double tap toggles alt OS
+        td_z: td_z { compatible = "zmk,behavior-tap-dance"; #binding-cells = <0>; tapping-term-ms = <250>; bindings = <&ht LCTRL Z>, <&tog 9>; };
+        td_q: td_q { compatible = "zmk,behavior-tap-dance"; #binding-cells = <0>; tapping-term-ms = <250>; bindings = <&ht RCTRL Q>, <&tog 9>; };
     };
 
     macros {
-        aa: aa {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp AMPS &kp AMPS>;
-        };
-
-        pp: pp {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp PIPE &kp PIPE>;
-        };
-
-        arrow: arrow {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp MINUS &kp GT>;
-        };
-
-        cc: cc {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp COLON &kp COLON>;
-        };
+        aa:    aa    { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp AMPS &kp AMPS>; };
+        pp:    pp    { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp PIPE &kp PIPE>; };
+        arrow: arrow { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp MINUS &kp GT>; };
+        cc:    cc    { compatible = "zmk,behavior-macro"; #binding-cells = <0>; bindings = <&kp COLON &kp COLON>; };
     };
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
-        thumb_combo {
-            if-layers = <1 2>;
-            then-layer = <3>;
-        };
+        tl0_tr0 { if-layers = <1 2>; then-layer = <5>; };
+        tl1_tr1 { if-layers = <3 4>; then-layer = <6>; };
+        tl1_tr0 { if-layers = <3 2>; then-layer = <7>; };
+        tl0_tr1 { if-layers = <1 4>; then-layer = <8>; };
     };
 
     keymap {
         compatible = "zmk,keymap";
-        home_layer {
-            display-name = "Home Layer";
+
+        l0_base {
+            display-name = "Base";
             bindings = <
-//╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-  &eb             &kp L           &kp W           &kp D           &kp B               &kp J           &kp U           &kp F           &kp O           &kp ENTER
-//├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &kp A           &ht LCTRL R     &ht LGUI S      &ht LALT T      &kp G               &kp H           &ht RALT N      &ht RGUI E      &ht RCTRL I     &kp P
-//├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &td_z           &kp X           &kp C           &kp V           &kp COMMA           &kp DOT         &kp Y           &kp K           &kp M           &td_q
-//╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                                  &ht LSFT TAB    &lt 1 SPACE         &lt 2 BSPC      &ht RSFT DEL
-//                                                ╰───────────────┴───────────────╯   ╰───────────────┴───────────────╯
+  &eb           &kp L         &kp W         &kp D         &kp B             &kp J         &kp U         &kp F         &kp O         &kp ENTER
+  &ht LSFT A    &ht LCTRL R   &ht LGUI S    &ht LALT T    &kp G             &kp H         &ht RALT N    &ht RGUI E    &ht RCTRL I   &ht RSFT P
+  &td_z         &kp X         &kp C         &kp V         &kp COMMA         &kp DOT       &kp Y         &kp K         &kp M         &td_q
+                                            &lt 3 TAB     &lt 1 SPACE       &lt 2 BSPC    &lt 4 DEL
             >;
         };
 
-        left_thumb_layer {
-            display-name = "Left Thumb Layer";
+        l1_tl0 {
+            display-name = "Nav";
             bindings = <
-//╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-  &trans          &hp             &kp UP          &ep             &lb                 &rb             &aa             &pp             &arrow          &none
-//├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &none           &kp LEFT        &kp DOWN        &kp RIGHT       &lp                 &rp             &cc             &kp SEMI        &kp QUOT        &kp PIPE
-//├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &none           &none           &none           &none           &trans              &trans          &none           &sb             &mp             &kp UNDER
-//╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                                  &trans          &trans              &trans          &trans
-//                                                ╰───────────────┴───────────────╯   ╰───────────────┴───────────────╯
+  &trans        &hp           &kp UP        &ep           &lb               &rb           &aa           &pp           &arrow        &none
+  &trans        &kp LEFT      &kp DOWN      &kp RIGHT     &lp               &rp           &cc           &kp SEMI      &kp QUOT      &trans
+  &none         &none         &none         &none         &trans            &trans        &kp PIPE      &sb           &mp           &kp UNDER
+                                            &trans        &trans            &trans        &trans
             >;
         };
 
-        right_thumb_layer {
-            display-name = "Right Thumb Layer";
+        l2_tr0 {
+            display-name = "Num";
             bindings = <
-//╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-  &trans          &kp F1           &kp F2         &kp F3           &none               &none           &kp N1          &kp N2          &kp N3          &trans
-//├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &none           &kp F4           &kp F5         &kp F6           &none               &kp N0          &kp N4          &kp N5          &kp N6          &none
-//├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &none           &kp F7           &kp F8         &none           &trans              &trans          &kp N7          &kp N8          &nt             &none
-//╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                                  &trans          &trans              &trans          &trans
-//                                                ╰───────────────┴───────────────╯   ╰───────────────┴───────────────╯
+  &trans        &kp F1        &kp F2        &kp F3        &kp F10           &none         &kp N1        &kp N2        &kp N3        &trans
+  &trans        &kp F4        &kp F5        &kp F6        &kp F11           &kp N0        &kp N4        &kp N5        &kp N6        &trans
+  &none         &kp F7        &kp F8        &kp F9        &kp F12           &trans        &kp N7        &kp N8        &nt           &none
+                                            &trans        &trans            &trans        &trans
             >;
         };
 
-        thumb_combo_layer {
-            display-name = "Thumb Combo Layer";
+        l3_tl1 {
+            display-name = "Media";
             bindings = <
-//╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-  &trans          &mkp LCLK       &mmv MOVE_UP    &mkp RCLK       &none               &none           &kp F1          &kp F2          &kp F3          &trans
-//├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &none           &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT &none               &none           &kp F4          &kp F5          &kp F6          &none
-//├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &none           &none           &mkp MCLK       &none           &trans              &trans          &kp F7          &kp F8          &kp F9          &none  
-//╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                                  &trans          &trans              &trans          &trans
-//                                                ╰───────────────┴───────────────╯   ╰───────────────┴───────────────╯
+  &trans        &none         &none         &none         &none             &none         &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE    &none
+  &trans        &none         &none         &none         &none             &none         &kp C_PREV    &kp C_PP      &kp C_NEXT    &trans
+  &none         &none         &none         &none         &none             &none         &kp C_BRI_DN  &kp C_BRI_UP  &none         &none
+                                            &trans        &trans            &trans        &trans
             >;
         };
 
-        global_layer {
-            display-name = "Global Layer";
+        l4_tr1 {
+            display-name = "L4";
             bindings = <
-//╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-  &sys_reset      &none           &none           &none           &none               &none           &none           &none           &none           &bootloader
-//├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &none           &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &none               &none           &none           &none           &none           &none
-//├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &none           &none           &bt BT_CLR      &none           &none               &trans          &none           &none           &none           &none
-//╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                                  &trans          &trans              &trans          &trans
-//                                                ╰───────────────┴───────────────╯   ╰───────────────┴───────────────╯
+  &trans        &none         &none         &none         &none             &none         &none         &none         &none         &none
+  &trans        &none         &none         &none         &none             &none         &none         &none         &none         &trans
+  &none         &none         &none         &none         &none             &none         &none         &none         &none         &none
+                                            &trans        &trans            &trans        &trans
             >;
         };
 
-        os_overlay_layer {
-            display-name = "Alternate OS";
+        l5_tl0_tr0 {
+            display-name = "Mouse";
             bindings = <
-//╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮   ╭───────────────┬───────────────┬───────────────┬───────────────┬───────────────╮
-  &trans          &trans          &trans          &trans          &trans              &trans          &trans          &trans          &trans          &trans
-//├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &trans          &ht LGUI R      &ht LCTRL S     &trans          &trans              &trans          &trans          &ht RCTRL E     &ht RGUI I      &trans
-//├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┼───────────────┼───────────────┤
-  &td_z           &trans          &trans          &trans          &trans              &trans          &trans           &none          &none           &td_q
-//╰───────────────┴───────────────┴───────────────┼───────────────┼───────────────┤   ├───────────────┼───────────────┼───────────────┴───────────────┴───────────────╯
-                                                  &trans          &trans              &trans          &trans
-//                                                ╰───────────────┴───────────────╯   ╰───────────────┴───────────────╯
+  &trans        &mkp LCLK     &mmv MOVE_UP  &mkp RCLK     &none             &none         &none         &msc SCRL_UP  &none         &none
+  &trans        &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &none         &none         &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_RIGHT &trans
+  &none         &none         &mkp MCLK     &none         &trans            &trans        &none         &none         &none         &none
+                                            &trans        &trans            &trans        &trans
+            >;
+        };
+
+        l6_tl1_tr1 {
+            display-name = "Global";
+            bindings = <
+  &sys_reset    &none         &none         &none         &none             &none         &none         &none         &none         &bootloader
+  &trans        &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &none             &none         &none         &none         &none         &trans
+  &none         &none         &bt BT_CLR    &none         &none             &none         &none         &none         &none         &none
+                                            &trans        &trans            &trans        &trans
+            >;
+        };
+
+        l7_tl1_tr0 {
+            display-name = "L7";
+            bindings = <
+  &trans        &none         &none         &none         &none             &none         &none         &none         &none         &none
+  &trans        &none         &none         &none         &none             &none         &none         &none         &none         &trans
+  &none         &none         &none         &none         &none             &none         &none         &none         &none         &none
+                                            &trans        &trans            &trans        &trans
+            >;
+        };
+
+        l8_tl0_tr1 {
+            display-name = "L8";
+            bindings = <
+  &trans        &none         &none         &none         &none             &none         &none         &none         &none         &none
+  &trans        &none         &none         &none         &none             &none         &none         &none         &none         &trans
+  &none         &none         &none         &none         &none             &none         &none         &none         &none         &none
+                                            &trans        &trans            &trans        &trans
+            >;
+        };
+
+        l9_alt_os {
+            display-name = "Alt OS";
+            bindings = <
+  &trans        &trans        &trans        &trans        &trans            &trans        &trans        &trans        &trans        &trans
+  &trans        &ht LGUI R    &ht LCTRL S   &trans        &trans            &trans        &trans        &ht RCTRL E   &ht RGUI I    &trans
+  &trans        &trans        &trans        &trans        &trans            &trans        &trans        &trans        &trans        &trans
+                                            &trans        &trans            &trans        &trans
             >;
         };
     };
